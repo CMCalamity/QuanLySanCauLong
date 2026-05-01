@@ -47,3 +47,5 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Data
 
 // Tạo Database (thông qua lệnh Add-Migration và Update-Database của EF Core trong Package Manager Console) để có SQL để chạy
 //Vd Add-Migration KhoiTaoDataBase nó sẽ tạo ra file migration với tên KhoiTaoDataBase chứa các lệnh SQL để tạo bảng, sau đó chạy Update-Database để áp dụng các thay đổi này vào database thực tế.
+
+//Người khác thì chỉ cần Update-Database vì file migration đã có sẵn
