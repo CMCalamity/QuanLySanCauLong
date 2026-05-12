@@ -21,6 +21,8 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Models
         public decimal GiaBan { get; set; }
         public int SoLuongTon { get; set; } = 0;
 
+        [StringLength(500)]
+        public string? HinhAnh { get; set; }
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
     }
 }

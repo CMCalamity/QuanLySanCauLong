@@ -19,6 +19,9 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Models
 
         public int MaLoai { get; set; }
         public int TrangThai { get; set; } = 0; // 0: Trống, 1: Đang chơi, 2: Đặt trước
+        
+        [StringLength(500)]
+        public string? HinhAnh { get; set; }
 
         [ForeignKey("MaLoai")]
         public virtual LoaiSan LoaiSan { get; set; }
