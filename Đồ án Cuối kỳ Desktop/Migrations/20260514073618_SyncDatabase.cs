@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -6,80 +7,98 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
 {
     /// <inheritdoc />
-    public partial class KhoiTaoDataBase : Migration
+    public partial class SyncDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "DichVus",
                 columns: table => new
                 {
                     MaDV = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenDV = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DonViTinh = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SoLuongTon = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TenDV = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DonViTinh = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    GiaBan = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    SoLuongTon = table.Column<int>(type: "int", nullable: false),
+                    HinhAnh = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DichVus", x => x.MaDV);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "KhachHangs",
                 columns: table => new
                 {
                     MaKH = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenKH = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    SDT = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TenKH = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SDT = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     DiemTichLuy = table.Column<int>(type: "int", nullable: false),
-                    Hang = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Hang = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_KhachHangs", x => x.MaKH);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "LoaiSans",
                 columns: table => new
                 {
                     MaLoai = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenLoai = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TenLoai = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LoaiSans", x => x.MaLoai);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "NgayLes",
                 columns: table => new
                 {
-                    Ngay = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TenLe = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Ngay = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    TenLe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NgayLes", x => x.Ngay);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "BangGias",
                 columns: table => new
                 {
                     MaGia = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     MaLoai = table.Column<int>(type: "int", nullable: false),
-                    LoaiNgay = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    TenKhungGio = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TuGio = table.Column<TimeSpan>(type: "time", nullable: false),
-                    DenGio = table.Column<TimeSpan>(type: "time", nullable: false),
-                    GiaTheoGio = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    LoaiNgay = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TenKhungGio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TuGio = table.Column<TimeSpan>(type: "time(6)", nullable: false),
+                    DenGio = table.Column<TimeSpan>(type: "time(6)", nullable: false),
+                    GiaTheoGio = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,17 +109,21 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         principalTable: "LoaiSans",
                         principalColumn: "MaLoai",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Sans",
                 columns: table => new
                 {
                     MaSan = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenSan = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TenSan = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     MaLoai = table.Column<int>(type: "int", nullable: false),
-                    TrangThai = table.Column<int>(type: "int", nullable: false)
+                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    HinhAnh = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -111,23 +134,24 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         principalTable: "LoaiSans",
                         principalColumn: "MaLoai",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "HoaDons",
                 columns: table => new
                 {
                     MaHD = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     MaSan = table.Column<int>(type: "int", nullable: false),
                     MaKH = table.Column<int>(type: "int", nullable: true),
-                    GioVao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GioRa = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    TienSan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TienDichVu = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PhuThu = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    GiamGiaHoiVien = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TongTien = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    GioVao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    GioRa = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    TienSan = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    TienDichVu = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    PhuThu = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    GiamGiaHoiVien = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    TongTien = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     TrangThaiThanhToan = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -144,7 +168,8 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         principalTable: "Sans",
                         principalColumn: "MaSan",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "ChiTietHoaDons",
@@ -153,7 +178,7 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                     MaHD = table.Column<int>(type: "int", nullable: false),
                     MaDV = table.Column<int>(type: "int", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
-                    DonGia = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    DonGia = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,7 +195,8 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         principalTable: "HoaDons",
                         principalColumn: "MaHD",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BangGias_MaLoai",

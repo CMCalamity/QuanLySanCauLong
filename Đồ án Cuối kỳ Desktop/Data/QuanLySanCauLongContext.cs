@@ -11,6 +11,7 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Data
     public class QuanLySanCauLongContext : DbContext
     {
         // 1. KHAI BÁO CÁC BẢNG (DbSet)
+        public DbSet<NhanVien> NhanViens { get; set; } = null!;
         public DbSet<LoaiSan> LoaiSans { get; set; } = null!;
         public DbSet<San> Sans { get; set; } = null!;
         public DbSet<BangGia> BangGias { get; set; } = null!;
@@ -25,10 +26,11 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Thay "TEN_SERVER_CUA_BAN" bằng tên SQL Server 
-                string connectionString = "Server=LAPTOP-448VUAA7\\SQLEXPRESS;Database=QuanLySanCauLong;Trusted_Connection=True;TrustServerCertificate=True;";
+                // Chuỗi kết nối MySQL (đổi password theo máy ông)
+                string connectionString = "server=localhost;database=QuanLySanCauLong;user=root;password=951753654";
 
-                optionsBuilder.UseSqlServer(connectionString);
+                // Cấu hình dùng MySQL
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             }
         }
 

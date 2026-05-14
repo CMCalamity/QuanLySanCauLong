@@ -17,7 +17,7 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Models
 
         [Required, StringLength(15)]
         public string SDT { get; set; }
-
+        public string Sdt { get; internal set; }
         public int DiemTichLuy { get; set; } = 0;
 
         [StringLength(50)]

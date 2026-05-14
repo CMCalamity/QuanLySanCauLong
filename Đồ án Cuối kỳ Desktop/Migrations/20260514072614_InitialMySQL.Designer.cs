@@ -12,8 +12,8 @@ using Đồ_án_Cuối_kỳ_Desktop.Data;
 namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
 {
     [DbContext(typeof(QuanLySanCauLongContext))]
-    [Migration("20260512015405_BoSungCotHinhAnh")]
-    partial class BoSungCotHinhAnh
+    [Migration("20260514072614_InitialMySQL")]
+    partial class InitialMySQL
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +21,9 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("Đồ_án_Cuối_kỳ_Desktop.Models.BangGia", b =>
                 {
@@ -31,18 +31,18 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaGia"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("MaGia"));
 
                     b.Property<TimeSpan>("DenGio")
-                        .HasColumnType("time");
+                        .HasColumnType("time(6)");
 
                     b.Property<decimal>("GiaTheoGio")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("LoaiNgay")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<int>("MaLoai")
                         .HasColumnType("int");
@@ -50,10 +50,10 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                     b.Property<string>("TenKhungGio")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<TimeSpan>("TuGio")
-                        .HasColumnType("time");
+                        .HasColumnType("time(6)");
 
                     b.HasKey("MaGia");
 
@@ -71,7 +71,7 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("DonGia")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
@@ -89,19 +89,19 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaDV"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("MaDV"));
 
                     b.Property<string>("DonViTinh")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<decimal>("GiaBan")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("HinhAnh")
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<int>("SoLuongTon")
                         .HasColumnType("int");
@@ -109,7 +109,7 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                     b.Property<string>("TenDV")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("MaDV");
 
@@ -122,16 +122,16 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaHD"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("MaHD"));
 
                     b.Property<decimal>("GiamGiaHoiVien")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<DateTime?>("GioRa")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("GioVao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("MaKH")
                         .HasColumnType("int");
@@ -140,16 +140,16 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("PhuThu")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("TienDichVu")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("TienSan")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("TongTien")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("TrangThaiThanhToan")
                         .HasColumnType("int");
@@ -169,7 +169,7 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaKH"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("MaKH"));
 
                     b.Property<int>("DiemTichLuy")
                         .HasColumnType("int");
@@ -177,17 +177,17 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                     b.Property<string>("Hang")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("SDT")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("TenKH")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("MaKH");
 
@@ -200,12 +200,12 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaLoai"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("MaLoai"));
 
                     b.Property<string>("TenLoai")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("MaLoai");
 
@@ -215,12 +215,12 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
             modelBuilder.Entity("Đồ_án_Cuối_kỳ_Desktop.Models.NgayLe", b =>
                 {
                     b.Property<DateTime>("Ngay")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("TenLe")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Ngay");
 
@@ -233,11 +233,11 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaSan"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("MaSan"));
 
                     b.Property<string>("HinhAnh")
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<int>("MaLoai")
                         .HasColumnType("int");
@@ -245,7 +245,7 @@ namespace Đồ_án_Cuối_kỳ_Desktop.Migrations
                     b.Property<string>("TenSan")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("TrangThai")
                         .HasColumnType("int");
